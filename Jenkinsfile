@@ -1,16 +1,19 @@
+// This line specifies that this pipeline uses the shared library 'shared-lib-int'.
 // @Library('shared-lib-int') _
 
+// This line loads the 'main' branch of the 'shared-lib-int' library.
 library 'shared-lib-int@main'
 
 
 pipeline {
     
-  
+  // This block sets the options for the pipeline. It sets a build discarder strategy to keep only 10 builds for the last 5 days, and it disables concurrent builds.
     options{
          buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '10'))
          disableConcurrentBuilds()
     }
     
+    // This block sets the options for the pipeline. It sets a build discarder strategy to keep only 10 builds for the last 5 days, and it disables concurrent builds.
     agent {
       docker {
         image 'jenkins-agent:latest'
@@ -18,6 +21,7 @@ pipeline {
         }
     }
     
+    // This line sets an environment variable 'SNYK_TOKEN' to the value of the 'snyk-token' credential.
     environment{
         SNYK_TOKEN = credentials('snyk-token')
     }
@@ -25,7 +29,10 @@ pipeline {
     stages {
 
         stage('Test') {
+            // parallel stages
             parallel {
+                
+                // pytest copies the 'telegramToken' credential file, installs dependencies from the 'requirements.txt' file, and runs the tests using Pytest.
                 stage('pytest') {
                     steps {
                         withCredentials([file(credentialsId: 'telegramToken', variable: 'TELEGRAM_TOKEN')]) {
@@ -35,6 +42,7 @@ pipeline {
                         }
                     }
                 }
+                // Run the Pylint linter
                 stage('pylint') {
                     steps {
                         script {
@@ -49,10 +57,13 @@ pipeline {
 
         stage('Build') {
             steps {
+                
+                // Uses the 'docker-hub-credentials' credential to build a Docker image with the 'docker build' command.
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     
-                  
+                 // Tag the docker image with the build number.
                  sh "docker build -t ayamb99/polybot:poly-bot-${env.BUILD_NUMBER} . "
+                 // Logs into the Docker registry with the credentials.
                  sh "docker login --username $user --password $pass"
   //              sh '''
  //               docker login --username $user --password $pass
@@ -64,6 +75,8 @@ pipeline {
             }
          }
       }
+        
+        // run the Snyk-test tool to test the Docker image for vulnerabilities.
         stage('snyk test') {
             steps {
                 sh "snyk container test --severity-threshold=critical ayamb99/polybot:poly-bot-${env.BUILD_NUMBER} --file=Dockerfile"
@@ -72,6 +85,7 @@ pipeline {
         
         stage('push') {
             steps {
+                // Pushes an image to a Docker registry
                 sh "docker push ayamb99/polybot:poly-bot-${env.BUILD_NUMBER}"
             }
          }
@@ -79,8 +93,12 @@ pipeline {
     
     post {
         always {
-           
+            
+            // The junit step will look for a JUnit test results file called results.xml and display the results in the Jenkins build report.
+            // The allowEmptyResults parameter is set to true to ensure that even if no test results are found, the pipeline run will still succeed.
             junit allowEmptyResults: true, testResults: 'results.xml'
+            
+            // Remove any unused Docker images that were created during the build process
             sh 'docker image prune -f' // Clean the build artifacts from Jenkins server
             
                }
