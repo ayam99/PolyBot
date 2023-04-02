@@ -13,7 +13,7 @@ pipeline {
          disableConcurrentBuilds()
     }
     
-    // This block sets the options for the pipeline. It sets a build discarder strategy to keep only 10 builds for the last 5 days, and it disables concurrent builds.
+    // The agent will run inside this container using jenkins agent image. 
     agent {
       docker {
         image 'jenkins-agent:latest'
