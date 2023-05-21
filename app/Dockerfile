@@ -1,4 +1,5 @@
 FROM python:3.8-slim-buster
+MAINTAINER XenonStack
  
 # Creating Application Source Code Directory
 RUN mkdir -p /PolyBot/src
