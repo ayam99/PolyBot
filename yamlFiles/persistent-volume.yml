@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: bolybot-deployment
+  namespace: polybot
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+  - ReadWriteMany
+  cephfs:
+    monitors:
+    - "34.254.197.170:8001"
+    user: admin
+    secretRef:
+      name: ceph-secret
+    readOnly: false
