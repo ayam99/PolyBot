@@ -1,17 +1,17 @@
-python:3.8-slim-buster
+FROM python:3.8-slim-buster
  
 # Creating Application Source Code Directory
-RUN mkdir -p /k8s_python_demo_code/src
+RUN mkdir -p /PolyBot/src
 
 # Setting Home Directory for containers
-WORKDIR /k8s_python_demo_code/src
+WORKDIR /PolyBot/src
 
 # Installing python dependencies
-COPY requirements.txt /k8s_python_demo_code/src
+COPY requirements.txt /PolyBot/src
 RUN pip install — no-cache-dir -r requirements.txt
 
 # Copying src code to Container
-COPY . /k8s_python_demo_code/src/app
+COPY . /PolyBot/src/app
 
 # Application Environment variables
 ENV APP_ENV development
