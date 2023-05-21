@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: polybot
+  namespace: polybot
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        polybot-app: polybot
+    spec:
+      containers:
+      - name: bolybot
+        image: polybot:latest
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 4025
+        volumeMounts:
+        - mountPath: /app-data
+          name: polybot
+      volumes:
+      - name: polybot
+        persistentVolumeClaim:
+          claimName: appclaim01
