@@ -1,8 +1,11 @@
 # Use the official Nginx base image
-FROM nginx:latest
+FROM ubuntu:latest
+
+RUN apt-get update
+RUN apt-get install nginx -y
 
 # Copy the static files to the Nginx document root
-COPY ./static-html /usr/share/nginx/html
+COPY index.html /var/www/html/
 
 # Expose port 80 for Nginx
 EXPOSE 80
