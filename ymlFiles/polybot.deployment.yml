@@ -5,13 +5,16 @@ metadata:
   namespace: polybot
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: polybot
   template:
     metadata:
       labels:
-        polybot-app: polybot
+        app: polybot
     spec:
       containers:
-      - name: bolybot
+      - name: polybot
         image: polybot:latest
         imagePullPolicy: "IfNotPresent"
         ports:
