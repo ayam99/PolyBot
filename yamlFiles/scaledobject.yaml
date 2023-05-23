@@ -1,0 +1,16 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: my-scaledobject
+  namespace: polybot
+spec:
+  scaleTargetRef:
+    deploymentName: polybot
+  triggers:
+  - type: custom
+    metadata:
+      scalerName: my-custom-scaler
+      metadata:
+        eventSourceName: my-event-source
+        eventSourceNamespace: polybot
+        metricName: my-metric
