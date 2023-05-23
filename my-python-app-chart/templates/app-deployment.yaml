@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "polybot.fullname" . }}
+  labels:
+    apps: {{ include "polybot.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "polybot.name" . }}
+  template: 
+    metadata:
+      labels:
+        apps: {{ include "polybot.name" . }}
+    spec:
+      containers:
+          - name: polybot
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePULLpOLICY: {{ .Values.image.pullPolicy }}
+          ports:
+              - name: polybot
+                containersPort: 8080
+                protocol: TCP
