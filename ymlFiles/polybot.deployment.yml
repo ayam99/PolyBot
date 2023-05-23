@@ -18,7 +18,7 @@ spec:
         image: polybot:latest
         imagePullPolicy: "IfNotPresent"
         ports:
-        - containerPort: 4025
+        - containerPort: 8081
         resources:
           limits:
             cpu: "1"
@@ -29,19 +29,23 @@ spec:
         readinessProbe:
           httpGet:
             path: /healthz
-            port: 4025
+            port: 8081
           initialDelaySeconds: 10
           periodSeconds: 15
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 4025
+            port: 8081
           initialDelaySeconds: 30
           periodSeconds: 30
         volumeMounts:
-        - mountPath: /app-data
-          name: polybot
+        - mountPath: /app/secrets
+          name: secret-volume
+          readOnly: true
       volumes:
-      - name: polybot
+      - name: secret-volume
+        secret:
+            secretName: myregistrykey
         persistentVolumeClaim:
-          claimName: polybot-claim
+          claimName: nginx-pvc
+
