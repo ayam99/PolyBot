@@ -36,4 +36,9 @@ spec:
             port: 80
           initialDelaySeconds: 15
           periodSeconds: 20
-
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+      volumes:
+      - name: data-volume
+        emptyDir: {}
