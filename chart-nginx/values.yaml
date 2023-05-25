@@ -1,5 +1,5 @@
 image:
-  repository: ayam99/nginx-repo
+  repository: ayammousa/ayam99-repo
   tag: nginx
   pullPolicy: InfotPresent
 name: nginx
