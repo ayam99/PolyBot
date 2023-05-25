@@ -1,5 +1,0 @@
-python-telegram-bot==13.7
-yt-dlp>=2023.3.4
-loguru
-pytest
-pylint
