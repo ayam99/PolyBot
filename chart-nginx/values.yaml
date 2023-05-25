@@ -1,5 +1,5 @@
 image:
-  repository: dariakalugny/daria-repo
+  repository: ayam99/polybot-repo
   tag: nginx
   pullPolicy: InfotPresent
 name: nginx
