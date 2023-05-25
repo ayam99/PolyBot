@@ -1,0 +1,4 @@
+apiVersion: v2
+name: polybot
+description: A helm chart for my python application deployment
+version: 0.1.0
