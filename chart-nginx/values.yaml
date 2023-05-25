@@ -1,5 +1,5 @@
 image:
-  repository: ayammousa/ayam99-repo
+  repository: ayamb99/polybot
   tag: nginx
   pullPolicy: InfotPresent
 name: nginx
