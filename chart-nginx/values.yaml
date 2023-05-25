@@ -1,0 +1,25 @@
+image:
+  repository: dariakalugny/daria-repo
+  tag: nginx
+  pullPolicy: InfotPresent
+name: nginx
+#namespace: demo-app
+service:
+  protocol: TCP
+  port: 8081
+  targetPort: 8081
+
+volume:
+  name: nginx-pvc
+
+resources:
+  limits:
+    cpu: "1"
+    memory: "100Mi"
+  requests:
+    cpu: "0.5"
+    memory: "50Mi"
+
+livenessProbe:
+ initialDelaySeconds: 1
+ periodSeconds: 5
