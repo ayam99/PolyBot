@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polybot-deployment
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: polybot
+     tier: backend
+ template:
+   metadata:
+     labels:
+       app: polybot
+       tier: backend
+   spec:
+     volumes:
+       - name: polybot-pvc
+         persistentVolumeClaim:
+           claimName: polybot-pvc
+     containers:
+       - name: polybot
+         image: "ayammousa/ayam99-repo:nginx"
+         volumeMounts:
+           - mountPath: /home/ec2-user/PolyBot/pvc-polybot
+             name: polybot-pvc
+
+         resources:
+           limits:
+             cpu: "1"
+             memory: "100Mi"
+           requests:
+             cpu: "0.5"
+             memory: "50Mi"
