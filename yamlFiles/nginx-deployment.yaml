@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  #namespace:    {{ include "common.names.namespace" . | quote }}z
+
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: nginx
+     tier: backend
+ template:
+   metadata:
+     labels:
+       app: nginx
+       tier: backend
+   spec:
+     volumes:
+       - name: nginx-pvc
+         persistentVolumeClaim:
+           claimName: nginx-pvc
+     containers:
+       - name: nginx
+         image: "ayammousa/ayam99-repo:nginx"
+         volumeMounts:
+           - mountPath: /usr/share/nginx/html
+             name: nginx-pvc
+
+         resources:
+           limits:
+             cpu: "1"
+             memory: "100Mi"
+           requests:
+             cpu: "0.5"
+             memory: "50Mi"
+
+         livenessProbe:
+          exec:
+            command:
+              - cat
+              - /var/www/html/index.html
+          initialDelaySeconds: 1
+          periodSeconds: 5
