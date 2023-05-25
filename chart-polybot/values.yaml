@@ -1,5 +1,5 @@
 image:
-  repository: dariakalugny/daria-repo
+  repository: ayammousa/ayam99-repo
   tag: polybot
   pullPolicy: InfotPresent
 name: polybot
