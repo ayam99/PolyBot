@@ -1,0 +1,9 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+ name: azure-servicebus-trigger #Name of TriggerAuthentication
+spec:
+ secretTargetRef:
+ - parameter: connection
+ name: azure-servicebus-secret #Secret Name we have created.
+ key: sbKey #Connection String variable name.
