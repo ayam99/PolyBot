@@ -23,11 +23,11 @@ pipeline {
            kind: Pod
            metadata:
             labels:
-                some-label: jenkins-eks-pod
+                some-label: mypod-label
            spec:
             containers:
-                - name: jenkins-agent
-                  image: ayammousa/ayam99-repo:jenkins2
+              - name: jenkins-agent
+                image: ayammousa/ayam99-repo:jenkins2
 
         '''
     }
