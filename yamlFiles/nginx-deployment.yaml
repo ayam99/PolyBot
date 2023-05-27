@@ -20,7 +20,7 @@ spec:
             claimName: nginx-pvc
       containers:
         - name: nginx
-          image: "ayammousa/ayam99-repo:nginx"
+          image: "ayamb99/polybot:nginx"
           volumeMounts:
             - mountPath: /usr/share/nginx/html
               name: nginx-pvc
