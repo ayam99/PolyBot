@@ -20,7 +20,7 @@ spec:
            claimName: polybot-pvc
      containers:
        - name: polybot
-         image: "ayammousa/ayam99-repo:nginx"
+         image: "ayamb99/polybot:poly-bot"
          volumeMounts:
            - mountPath: /home/ec2-user/PolyBot/pvc-polybot
              name: polybot-pvc
