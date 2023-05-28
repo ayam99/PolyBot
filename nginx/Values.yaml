@@ -1,7 +1,8 @@
 image:
   repository: ayamb99/nginx
   tag: nginx
-  pullPolicy: InfotPresent
+  pullPolicy: IfNotPresent
+
 name: nginx
 
 service:
@@ -21,7 +22,5 @@ resources:
     memory: "50Mi"
 
 livenessProbe:
- initialDelaySeconds: 1
- periodSeconds: 5
-
-#namespace: demoapp
+  initialDelaySeconds: 1
+  periodSeconds: 5
