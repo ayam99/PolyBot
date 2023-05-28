@@ -1,5 +1,5 @@
 image:
-  repository: ayammousa/ayam99-repo
+  repository: ayamb99/nginx
   tag: nginx
   pullPolicy: InfotPresent
 name: nginx
@@ -23,3 +23,6 @@ resources:
 livenessProbe:
  initialDelaySeconds: 1
  periodSeconds: 5
+ 
+imagePullSecrets:
+  - name: my-registry-secret
