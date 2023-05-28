@@ -27,7 +27,7 @@ pipeline {
            spec:
             containers:
               - name: jenkins-agent
-                image: ayammousa/ayam99-repo:jenkins2
+                image: ayamb99/polypot:jenkins2
 
         '''
       }
