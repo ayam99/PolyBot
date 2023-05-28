@@ -4,10 +4,6 @@ image:
   pullPolicy: InfotPresent
 name: nginx
 #namespace: demo-app
-service:
-  protocol: TCP
-  port: 8081
-  targetPort: 8081
 
 volume:
   name: nginx-pvc
