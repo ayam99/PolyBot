@@ -20,7 +20,7 @@ spec:
            claimName: polybot-pvc
      containers:
        - name: polybot
-         image: "ayamb99/polybot:poly-bot"
+         image: "ayamb99/polybot:poly-pot-6"
          volumeMounts:
            - mountPath: /home/ec2-user/PolyBot/pvc-polybot
              name: polybot-pvc
@@ -32,3 +32,5 @@ spec:
            requests:
              cpu: "0.5"
              memory: "50Mi"
+      imagePullSecrets:
+        - name: my-registry-secret
