@@ -2,7 +2,7 @@ apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
   name: servicebus-scaledobject
-  namespace: demo-app # Kubernetes Namespace name
+  namespace: keda # Kubernetes Namespace name
 spec:
   scaleTargetRef:
     name: polybot # Deployment Name to which you want to Autoscale
