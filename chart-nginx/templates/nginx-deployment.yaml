@@ -42,3 +42,5 @@ spec:
               - /var/www/html/index.html
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+     imagePullSecrets:
+        - name: {{ .Values.imagePullSecrets.name }}
