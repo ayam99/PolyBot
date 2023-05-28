@@ -8,9 +8,9 @@ spec:
     name: polybot # Deployment Name to which you want to Autoscale
   triggers:
   - type: azure-servicebus
-    Metadata:
+    metadata:
       topicName: functions-sbtopic
       subscriptionName: sbtopic-sub1
-      messageCount: "1" # Event on which the autoscale triggered. 
+      messageCount: "1" # Event on which the autoscale triggered.
     authenticationRef:
-        name: azure-servicebus-trigger #TriggerAuthentication
+      name: azure-servicebus-trigger #TriggerAuthentication
