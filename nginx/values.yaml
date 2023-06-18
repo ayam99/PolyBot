@@ -1,5 +1,5 @@
 image:
-  repository: ayamb99/nginx
+  repository: ayamb99/polybot
   tag: nginx
   pullPolicy: IfNotPresent
 
