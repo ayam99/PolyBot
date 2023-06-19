@@ -19,7 +19,7 @@ spec:
           persistentVolumeClaim:
             claimName: nginx-pvc
       containers:
-        - name: nginx
+        - name: polybot
           image: "ayamb99/polybot:nginx"
           volumeMounts:
             - mountPath: /usr/share/nginx/html
