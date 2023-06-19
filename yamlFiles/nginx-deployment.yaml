@@ -45,4 +45,4 @@ spec:
             initialDelaySeconds: 1
             periodSeconds: 5
       imagePullSecrets:
-        - name: my-registry-secret
+        - name: registry-secret

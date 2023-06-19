@@ -32,4 +32,4 @@ spec:
               cpu: "0.5"
               memory: "50Mi"
       imagePullSecrets:
-        - name: my-registry-secret
+        - name: registry-secret
