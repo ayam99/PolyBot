@@ -12,23 +12,42 @@ pipeline {
          buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '10'))
          disableConcurrentBuilds()
     }
+     
+    agent{
+        docker{
+              image 'jenkins-agent:latest'
+              args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+               }
+    }
 
-    // This block sets the options for the pipeline. It sets a build discarder strategy to keep only 10 builds for the last 5 days, and it disables concurrent builds.
+
     agent {
       kubernetes {
 
-        inheritFrom 'jenkins'
-        yaml '''
+        defaultContainer 'jenkins-agent'
+         yaml '''
            apiVersion: v1
            kind: Pod
-           metadata:
+          metadata:
             labels:
-                some-label: mypod-label
-           spec:
-            containers:
-              - name: jenkins-agent
-                image: ayamb99/polypot:jenkins2
-
+               some-label: jenkins-eks-pod
+          spec:
+             serviceAccountName: jenkins-admin
+             volumes:
+             - name: jenkinsagent-pvc
+               hostPath:
+                 path: /var/run/docker.sock
+             containers:
+             - name: jenkins-agent
+               image: shaniben/shani-repo:jenkins
+               imagePullPolicy: Always
+               volumeMounts:
+               - name: jenkinsagent-pvc
+                 mountPath: /var/run/docker.sock
+               tty: true
+             securityContext:
+               allowPrivilegeEscalation: false
+               runAsUser: 0
         '''
       }
     }
