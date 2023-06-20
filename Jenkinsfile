@@ -30,7 +30,7 @@ pipeline {
            kind: Pod
           metadata:
             labels:
-               some-label: jenkins-eks-pod
+               some-label: mypod
           spec:
              serviceAccountName: jenkins-admin
              volumes:
@@ -39,7 +39,7 @@ pipeline {
                  path: /var/run/docker.sock
              containers:
              - name: jenkins-agent
-               image: shaniben/shani-repo:jenkins
+               image: ayamb99/polybot:jenkins2
                imagePullPolicy: Always
                volumeMounts:
                - name: jenkinsagent-pvc
