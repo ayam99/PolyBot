@@ -1,6 +1,6 @@
 image:
   repository: ayamb99/polybot
-  tag: polybot
+  tag: poly-bot-6
   pullPolicy: InfotPresent
 name: polybot
 
