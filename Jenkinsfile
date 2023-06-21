@@ -21,10 +21,10 @@ pipeline {
          yaml '''
            apiVersion: v1
            kind: Pod
-          metadata:
+           metadata:
             labels:
                some-label: mypod-label
-          spec:
+           spec:
              serviceAccountName: jenkins-admin
              volumes:
              - name: jenkinsagent-pvc
