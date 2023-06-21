@@ -2,7 +2,7 @@
 // @Library('shared-lib-int') _
 
 // This line loads the 'main' branch of the 'shared-lib-int' library.
-library 'shared-lib-int@main'
+// library 'shared-lib-int@main'
 
 
 pipeline {
