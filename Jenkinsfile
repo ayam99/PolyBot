@@ -23,7 +23,7 @@ pipeline {
            kind: Pod
           metadata:
             labels:
-               some-label: mypod
+               some-label: mypod-label
           spec:
              serviceAccountName: jenkins-admin
              volumes:
