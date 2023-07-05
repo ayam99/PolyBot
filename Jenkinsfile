@@ -87,8 +87,5 @@ pipeline {
             junit allowEmptyResults: true, testResults: 'results.xml'
             sh 'docker image prune -f'
         }
-Additionally, make sure to close the `pipeline` block at the end of the Jenkinsfile:
-
-```groovy
     }
 }
