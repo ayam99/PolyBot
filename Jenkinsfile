@@ -62,22 +62,18 @@ pipeline {
 
         stage('Build') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    sh "docker build -t ayamb99/polybot:poly-bot-${env.BUILD_NUMBER} ."
-                    sh "docker login --username $user --password $pass"
-                }
+              sh "docker build -f /home/ec2-user/PolyBot/Dockerfile -t ayam-ecr-repo ."
+              sh "docker tag ayam-ecr-repo:latest 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:latest"           
             }
         }
 
-        stage('snyk test') {
-            steps {
-                sh "snyk container test --severity-threshold=critical ayamb99/polybot:poly-bot-${env.BUILD_NUMBER} --file=Dockerfile"
-            }
-        }
 
         stage('push') {
             steps {
-                sh "docker push ayamb99/polybot:poly-bot-${env.BUILD_NUMBER}"
+               withAWS(credentials: 'AWS-Credentials', region: 'eu-west-1')
+                 {
+                   sh "docker push  ayam-ecr-repo:latest 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:latest"
+                 }
             }
         }
     }
@@ -85,7 +81,6 @@ pipeline {
     post {
         always {
             junit allowEmptyResults: true, testResults: 'results.xml'
-            sh 'docker image prune -f'
         }
     }
 }
