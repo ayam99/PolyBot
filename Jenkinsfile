@@ -1,6 +1,6 @@
 // @Library('shared-lib-int') _
 
-library 'shared-lib-int@main'
+library 'SharedLibrary@main'
 
 pipeline {
     options {
