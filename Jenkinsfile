@@ -1,5 +1,4 @@
 pipeline {
-
     options {
         buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '10'))
         disableConcurrentBuilds()
@@ -67,13 +66,24 @@ pipeline {
             }
         }
 
-
         stage('push') {
             steps {
-               withAWS(credentials: 'AWS-Credentials', region: 'eu-west-1')
-                 {
-                   sh "docker push  ayam-ecr-repo:latest 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:latest"
-                 }
+               withAWS(credentials: 'AWS-Credentials', region: 'eu-west-1') {
+                   sh "docker push ayam-ecr-repo:latest 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:latest"
+               }
+            }
+        }
+        
+        stage('Publish SNS') {
+            steps {
+                echo 'Publishing SNS message to AWS'
+                withAWS(credentials: 'AWS-Credentials', region: 'eu-west-1') {
+                    snsPublish(
+                        topicArn: 'arn:aws:sns:eu-west-1:019273956931:ayam-topic',
+                        subject: "${params.ACTION} ${params.AWS_ENVIRONMENT}",
+                        message: getMessage(mapEnvironmentToAWS[params.AWS_ENVIRONMENT], params.ACTION)
+                    )
+                }
             }
         }
     }
