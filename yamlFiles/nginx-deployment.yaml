@@ -20,7 +20,7 @@ spec:
             claimName: nginx-pvc
       containers:
         - name: polybot
-          image: "ayamb99/polybot:nginx"
+          image: "019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:nginx"
           volumeMounts:
             - mountPath: /usr/share/nginx/html
               name: nginx-pvc
@@ -44,5 +44,3 @@ spec:
                 - /var/www/html/index.html
             initialDelaySeconds: 1
             periodSeconds: 5
-      imagePullSecrets:
-        - name: registry-secret
