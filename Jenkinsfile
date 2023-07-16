@@ -1,3 +1,7 @@
+// @Library('shared-lib-int') _
+
+library 'shared-lib-int@main'
+
 pipeline {
     options {
 	buildDiscarder logRotator( artifactNumToKeepStr: '10', numToKeepStr: '10')
