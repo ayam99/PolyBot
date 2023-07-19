@@ -54,4 +54,4 @@ spec:
       volumes:
         - name: jenkins-data2
           persistentVolumeClaim:
-              claimName: pvclaim
+              claimName: pre-vo-claim
