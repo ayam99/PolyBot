@@ -7,15 +7,22 @@ pipeline {
 	buildDiscarder logRotator( artifactNumToKeepStr: '10', numToKeepStr: '10')
         disableConcurrentBuilds()
 	timestamps()
-        timeout(time: 10, unit: 'MINUTES')
+        timeout(time: 5, unit: 'MINUTES')
     }
 
     agent {
         kubernetes {
+            
+            label 'mypod-label'
             defaultContainer 'jenkins-agent'
+	    cloud 'EKS'
+
             yaml '''
               apiVersion: v1
               kind: Pod
+              metadata:
+               labels:
+                  some-label: mypod-label
               spec:
                 serviceAccountName: jenkins-admin
                 containers:
@@ -93,10 +100,11 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            junit allowEmptyResults: true, testResults: 'results.xml'
+	post {
+           always {
+             junit allowEmptyResults: true, testResults: 'results.xml'
         }
     }
+
+
 }
