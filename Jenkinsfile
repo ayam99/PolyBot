@@ -10,8 +10,7 @@ pipeline {
         timeout(time: 5, unit: 'MINUTES')
     }
 
-    agent {
-         none
+    agent none
 //        kubernetes {
 //            
             // label 'mypod-label'
@@ -44,7 +43,7 @@ pipeline {
                   //runAsUser: 0
             //'''
         //}
-    }
+    //}
 
     environment {
         SNYK_TOKEN = credentials('snyk-token')
