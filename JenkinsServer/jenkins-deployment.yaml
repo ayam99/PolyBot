@@ -16,10 +16,10 @@ spec:
       securityContext:
             fsGroup: 1000
             runAsUser: 1000
-      serviceAccountName: jenkins-admin
+      serviceAccountName: ayam-admin
       containers:
         - name: jenkins
-          image: jenkins/jenkins:lts-jdk11
+          image: 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:jenkins-server
           resources:
             limits:
               memory: "2Gi"
@@ -49,9 +49,9 @@ spec:
             timeoutSeconds: 5
             failureThreshold: 3
           volumeMounts:
-            - name: jenkins-data
+            - name: jenkins-data2
               mountPath: /var/lib/jenkins
       volumes:
-        - name: jenkins-data
+        - name: jenkins-data2
           persistentVolumeClaim:
-              claimName: jenkins-pv-claim
+              claimName: pvclaim
