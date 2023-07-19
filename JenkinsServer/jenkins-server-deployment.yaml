@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-server
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app:  jenkins-server
+     tier: backend
+ template:
+   metadata:
+     labels:
+       app:  jenkins-server
+       tier: backend
+   spec:
+      volumes:
+      - name: jenkins-server-data2
+        persistentVolumeClaim:
+          claimName: pre-vo-claim
+      containers:
+      - name: jenkins
+        image: 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:jenkins-server
+        volumeMounts:
+        - name: jenkins-server-data2
+          mountPath: /var/lib/jenkins
