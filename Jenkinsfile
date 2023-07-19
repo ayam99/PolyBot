@@ -11,37 +11,38 @@ pipeline {
     }
 
     agent {
-        kubernetes {
-            
+//        kubernetes {
+//            
             // label 'mypod-label'
-            defaultContainer 'jenkins-agent'
+//            defaultContainer 'jenkins-agent'
 	    // cloud 'EKS'
 
+
             yaml '''
-              apiVersion: v1
-              kind: Pod
-              metadata:
-               labels:
-                  some-label: mypod-label
-              spec:
-                serviceAccountName: jenkins-admin
-                containers:
-                - name: jenkins-agent
-                  image: 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:jenkins2
-                  imagePullPolicy: Always
-                  volumeMounts:
-                  - name: jenkinsagent-pvc
-                    mountPath: /var/run/docker.sock
-                  tty: true
-                volumes:
-                - name: jenkinsagent-pvc
-                  hostPath:
-                    path: /var/run/docker.sock
-                securityContext:
-                  allowPrivilegeEscalation: false
-                  runAsUser: 0
-            '''
-        }
+//              apiVersion: v1
+//              kind: Pod
+//              metadata:
+//               labels:
+//                  some-label: mypod-label
+//              spec:
+//                serviceAccountName: jenkins-admin
+//                containers:
+//                - name: jenkins-agent
+//                  image: 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:jenkins2
+//                  imagePullPolicy: Always
+//                  volumeMounts:
+//                  - name: jenkinsagent-pvc
+//                    mountPath: /var/run/docker.sock
+//                  tty: true
+//                volumes:
+//                - name: jenkinsagent-pvc
+//                  hostPath:
+//                    path: /var/run/docker.sock
+//                securityContext:
+//                  allowPrivilegeEscalation: false
+//                  runAsUser: 0
+//            '''
+//        }
     }
 
     environment {
