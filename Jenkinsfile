@@ -13,7 +13,7 @@ pipeline {
     agent {
         kubernetes {
             
-            label 'mypod-label'
+            // label 'mypod-label'
             defaultContainer 'jenkins-agent'
 	    cloud 'EKS'
 
