@@ -25,17 +25,17 @@ pipeline {
                labels:
                   some-label: mypod-label
               spec:
-                serviceAccountName: jenkins-admin
+                serviceAccountName: ayam-admin
                 containers:
                 - name: jenkins-agent
                   image: 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:jenkins2
                   imagePullPolicy: Always
                   volumeMounts:
-                  - name: jenkinsagent-pvc
+                  - name: pre-vo-claim
                     mountPath: /var/run/docker.sock
                   tty: true
                 volumes:
-                - name: jenkinsagent-pvc
+                - name: pre-vo-claim
                   hostPath:
                     path: /var/run/docker.sock
                 securityContext:
