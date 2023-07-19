@@ -11,7 +11,7 @@ pipeline {
     }
 
     agent {
-        kubernetes {
+    kubernetes {
             
             // label 'mypod-label'
             defaultContainer 'jenkins-agent'
