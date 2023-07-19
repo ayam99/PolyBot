@@ -15,7 +15,7 @@ pipeline {
             
             // label 'mypod-label'
             defaultContainer 'jenkins-agent'
-	    cloud 'EKS'
+	    // cloud 'EKS'
 
             yaml '''
               apiVersion: v1
