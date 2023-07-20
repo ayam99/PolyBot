@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pre-vo-efs
+  name: pre-vo
 spec:
   capacity:
     storage: 5Gi
