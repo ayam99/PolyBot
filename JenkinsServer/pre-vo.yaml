@@ -9,7 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: storage-class-efs
-  persistentVolumeReclaimPolicy: Retain
+  persistentVolumeReclaimPolicy: Delete
   awsElasticBlockStore:
     volumeID: vol-08737aa78523fef34
     fsType: xfs
