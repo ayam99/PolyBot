@@ -12,4 +12,4 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-0391be0e4663e54ef
+    volumeHandle: fs-0391be0e4663e54ef.efs.eu-west-1.amazonaws.com
