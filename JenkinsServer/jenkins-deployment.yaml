@@ -54,4 +54,4 @@ spec:
       volumes:
         - name: jenkins-data-aws
           persistentVolumeClaim:
-              claimName: aws-ebs-pvc
+              claimName: ebs-pvc
