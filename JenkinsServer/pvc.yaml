@@ -2,14 +2,15 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: aws-pvc
-    labels:
-       type: aws-pvc
+  labels:
+    type: aws-pvc
 spec:
+  storageClassName: aws-storage-class
   accessModes:
     - ReadWriteOnce
-resources:
-  requests:
-    storage: 3Gi
-   selector:
+  resources:
+    requests:
+      storage: 3Gi
+  selector:
     matchLabels:
       type: aws-pv
