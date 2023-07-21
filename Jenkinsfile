@@ -31,11 +31,11 @@ pipeline {
                   image: 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:jenkins2
                   imagePullPolicy: Always
                   volumeMounts:
-                  - name: aws-ebs-pvc
+                  - name: ebs-pvc
                     mountPath: /var/run/docker.sock
                   tty: true
                 volumes:
-                - name: aws-ebs-pvc
+                - name: ebs-pvc
                   hostPath:
                     path: /var/run/docker.sock
                 securityContext:
