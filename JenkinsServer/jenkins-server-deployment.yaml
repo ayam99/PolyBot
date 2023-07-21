@@ -15,12 +15,12 @@ spec:
        tier: backend
    spec:
       volumes:
-      - name: jenkins-server-data2
+      - name: jenkins-server-data-aws
         persistentVolumeClaim:
-          claimName: pre-vo-claim
+          claimName: aws-ebs-pvc
       containers:
       - name: jenkins
         image: 019273956931.dkr.ecr.eu-west-1.amazonaws.com/ayam-ecr-repo:jenkins-server
         volumeMounts:
-        - name: jenkins-server-data2
+        - name: jenkins-server-data-aws
           mountPath: /var/lib/jenkins

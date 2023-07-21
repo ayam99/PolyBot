@@ -49,9 +49,9 @@ spec:
             timeoutSeconds: 5
             failureThreshold: 3
           volumeMounts:
-            - name: jenkins-data2
+            - name: jenkins-data-aws
               mountPath: /var/lib/jenkins
       volumes:
-        - name: jenkins-data2
+        - name: jenkins-data-aws
           persistentVolumeClaim:
-              claimName: pre-vo-claim
+              claimName: aws-ebs-pvc
