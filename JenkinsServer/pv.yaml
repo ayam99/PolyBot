@@ -6,7 +6,7 @@ metadata:
     type: aws-ebs-pv
 spec:
   capacity:
-    storage: 3Gi
+    storage: 5Gi
   accessModes:
     - ReadWriteOnce
   awsElasticBlockStore:
