@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pre-vo
+  name: aws-pv
+  labels:
+    type: aws-pv
 spec:
   capacity:
-    storage: 5Gi
-  volumeMode: Filesystem
+    storage: 3Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: storage-class-efs
-  persistentVolumeReclaimPolicy: Delete
   awsElasticBlockStore:
     volumeID: vol-08737aa78523fef34
     fsType: xfs
