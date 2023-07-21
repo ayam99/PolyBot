@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: aws-pv
+  name: aws-ebs-pv
   labels:
-    type: aws-pv
+    type: aws-ebs-pv
 spec:
   capacity:
     storage: 3Gi
