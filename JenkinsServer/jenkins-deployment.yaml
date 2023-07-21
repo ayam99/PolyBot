@@ -27,7 +27,6 @@ spec:
             requests:
               memory: "500Mi"
               cpu: "500m"
-      priority: 1000
           ports:
             - name: httpport
               containerPort: 8080
