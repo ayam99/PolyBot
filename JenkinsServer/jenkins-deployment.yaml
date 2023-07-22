@@ -15,7 +15,7 @@ spec:
         tier: backend
     spec:
       nodeSelector:
-        kubernetes.io/hostname: ip-192-168-57-182.eu-west-1.compute.internal
+        kubernetes.io/hostname: ip-192-168-67-19.eu-west-1.compute.internal 
       volumes:
         - name: ebs-storage
           persistentVolumeClaim:
