@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-helm
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: {{ .Values.name }}
+     tier: backend
+ template:
+   metadata:
+     labels:
+       app: {{ .Values.name }}
+       tier: backend
+   spec:
+     volumes:
+       - name: {{ .Values.volume.name }}
+         persistentVolumeClaim:
+           claimName: {{ .Values.volume.name }}
+     containers:
+       - name: {{ .Values.name }}
+         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+         volumeMounts:
+           - mountPath: /home/var/lib/jenkins
+             name: {{ .Values.volume.name }}

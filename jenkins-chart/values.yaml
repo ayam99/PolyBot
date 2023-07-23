@@ -1,0 +1,9 @@
+image:
+  repository: jenkins/jenkins
+  tag: lts-jdk11
+  pullPolicy: InfotPresent
+name: jenkins-helm
+
+volume:
+  name: jenkins-helm-pvc
+
