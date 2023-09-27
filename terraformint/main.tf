@@ -118,13 +118,6 @@ resource "aws_lb" "loadbalancer_web" {
   }
 }
 
-resource "aws_lb_target_group" "lb_target_group" {
-  name     = "lb-tg"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = module.app_vpc.vpc_id
-}
-
 module "app_vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.14.0"
