@@ -96,7 +96,7 @@ resource "aws_security_group" "securityg_web" {
 resource "aws_lb_target_group" "target_group" {
   name     = "lb-tg"
   port     = 80
-  protocol = "HTTP"
+  protocol = "TCP"
   vpc_id   = module.app_vpc.vpc_id
 }
 
